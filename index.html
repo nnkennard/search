@@ -8,7 +8,7 @@
 
 <body>
     <style>.custom {
-    width: 78px !important;
+    width: 100px !important;
 }</style>
 <br><br>
 <section>
@@ -49,7 +49,7 @@
 }
 
 
-haystack_size = 47
+haystack_size = 30
 needle = 0
 //nums = []
 haystack = []
@@ -59,7 +59,7 @@ function setup(sort) {
   document.getElementById("congrats").innerHTML = ""
   document.getElementById("click_count").innerHTML = 0
   
-  nums = Array.from(Array(haystack_size * 50).keys())
+  nums = Array.from(Array(haystack_size * 20).keys())
   shuffleArray(nums)
   haystack = nums.slice(0, haystack_size)
   
