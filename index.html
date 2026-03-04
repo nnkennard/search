@@ -8,6 +8,10 @@
 
 <body>
     <style>
+
+        .revealed {
+            background-color: #a79db0;
+        }
         .custom {
             width: 100px !important;
         }
@@ -23,7 +27,7 @@
 
             This array is <span id='sorted_message'> </span> <br> <br>
 
-            <b><span id="congrats"> </span> </b><br> 
+            <span id="congrats"> </span> <br> 
 
         </div><!-- /column-->
         <div class="column is-10 is-offset-1" id="button_container">
@@ -106,8 +110,10 @@
 
         // Reveal number at index
         revealed_number = haystack[index]
-        document.getElementById("button_" + index).innerHTML = revealed_number
-        document.getElementById("button_" + index).classList.add("is-static")
+        this_button_elem = document.getElementById("button_" + index)
+        this_button_elem.innerHTML = revealed_number
+        this_button_elem.classList.add("revealed")
+        this_button_elem.onclick = function () {}
 
         // Update click count
         click_count_elem = document.getElementById("click_count")
@@ -116,14 +122,18 @@
         click_count_elem.innerHTML = click_count
 
         if (revealed_number == needle) { // End search
-            document.getElementById("congrats").innerHTML = "Done! You found " + needle + " in " + click_count + " clicks."
+            document.getElementById("congrats").innerHTML = (
+                "<b>Done!</b> You found <b> " + needle + "</b> in <b>"
+                + click_count + "</b> clicks.")
 
             // Blank out all buttons
             for (let i = 0; i < haystack_size; i++) {
                 button = document.getElementById("button_" + i);
-                if (button.classList.contains('is-static')) {} else {
-                    button.innerHTML = "-"
+                if (button.classList.contains('revealed')) {} else {
+                    button.innerHTML = haystack[i]
                     button.classList.add('is-static')
+                    button.onclick = function () {}
+                    //button.classList.add('is-info')
                 }
             }
 
